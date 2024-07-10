@@ -1,0 +1,31 @@
+import java.util.*;
+public class 계산기 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int T;
+		T = sc.nextInt();
+
+		for (int test_case = 1; test_case <= T; test_case++) {
+			int size = sc.nextInt();
+			int[] num = new int[size];
+
+			for (int i = 0; i < num.length; i++) {
+				num[i] = sc.nextInt();
+			}
+
+			int result = num[0];// 첫 숫자는 가지고 시작
+
+			for (int i = 1; i < num.length; i++) {// 두번 째 부터 시작
+				if (result + num[i] < result * num[i]) {
+					result *= num[i];
+				}// if 곱한게 더 큰 경우
+				else {
+					result += num[i];
+				}// else 더한게 더 큰 경우
+			}// 다음숫자를 더한것과 곱한것중 무엇이 더 큰지 비교
+			System.out.println("#" + (test_case) + " " + result);
+		}
+	}
+
+}
