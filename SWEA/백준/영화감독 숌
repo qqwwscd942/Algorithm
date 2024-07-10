@@ -1,0 +1,24 @@
+import java.util.*;
+public class 영화감독숌 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int n =sc.nextInt();
+		
+		int num = 666;
+		int cnt = 1;
+		
+		while(cnt !=n) {
+			num++; // 계속해서 숫자 늘리기
+			
+			if(Integer.toString(num).contains("666")) {
+				cnt++;
+			} // 666이 포함되었을 때 카운트
+      
+		}// n과 cnt가 같을 때 종료
+		
+		System.out.println(num);
+	}
+
+}
