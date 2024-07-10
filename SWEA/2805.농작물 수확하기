@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class 농작물수확하기 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int tcase = sc.nextInt();
+
+		for (int t = 0; t < tcase; t++) {
+			
+			int fsize = sc.nextInt();// 농장은 무조건 홀수*홀수
+			int[][] arr = new int[fsize][fsize];// N*N 농장사이즈
+			
+			int sum = 0;
+			int half = fsize / 2; //농장 절반 나누기
+			
+			for (int i = 0; i < fsize; i++) {
+				String num = sc.next();
+				for (int j = 0; j < fsize; j++) {
+					arr[i][j] = num.charAt(j) - '0';
+				}
+			}//공백없이 한줄로 입력받기 때문에 한글자씩 나누기
+			
+			int cnt = 0;
+			for (int i = 0; i < fsize; i++) {
+
+				if (i <= (fsize/2)) {
+					for (int j = 0; j < (cnt * 2) + 1; j++) {
+						sum += arr[i][half + j];//가로의 절반부터 시작
+					}// ex) 절반 부터 1칸, 절반-1 부터 3칸, 절반-2 부터 5칸...
+					if(i==(fsize/2)) continue;// 최대지점에서 계산 후 아래는 생략(다음은 감소이기때문)
+					half--;//세로가 +1 이동할 때, 가로는 절반에서 -1씩 이동해서 시작
+					cnt++;//세로줄 증가에 따라 수확영역 증가
+				}         //세로의 절반+1 까지 진행 (좌우 최대지점)
+				else {
+					cnt--;//상하의 절반을 지났을 때 반대로 수확영역 감소
+					half++;//세로가 -1 이동할 때, 가로는 절반에서 +1씩 이동해서 시작
+					for (int j = 0; j < (cnt* 2) + 1; j++) {
+						sum += arr[i][half + j];
+					}
+				}// 마지막까지
+			}
+
+			System.out.println("#" + (t + 1) + " " + sum);
+
+		}
+
+	}
+
+}
